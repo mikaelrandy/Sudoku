@@ -55,9 +55,31 @@ class Matrice
 		{
 			for( $j=1; $j<=$this->width; $j++ )
 			{
-				$this->matrice[$i][$j] = new Matrice\Section();
+				$this->matrice[$i][$j] = new Matrice\Section($this->getHeight(), $this->getWidth());
 			}			
 		}
+	}
+
+	/**
+	 *	Is the matrice resolved
+	 *
+	 *	@author Mikael Randy <mikael.randy@gmail.com>
+	 * 	@since 21 jun 2012 - Mikael Randy <mikael.randy@gmail.com>
+	 * 	@version 1.0 - 21 jun 2012 - Mikael Randy <mikael.randy@gmail.com>
+	 */
+	public function isResolved()
+	{
+		// If one section isn't resolved, matrice isn't resolved
+		for( $i=1; $i<=$this->height; $i++ )
+		{
+			for( $j=1; $j<=$this->width; $j++ )
+			{
+				if( !$this->matrice[$i][$j]->isResolved() )
+					return false;
+			}			
+		}
+
+		return true
 	}
 
 	/**
